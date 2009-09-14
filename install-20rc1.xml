@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>motokochan:moregenders</id>
+	<name>More Genders</name>
+
+	<file name="$sourcedir/Load.php">
+		<operation>
+			<search position="replace"><![CDATA[
+	$gendertxt = $profile['gender'] == 2 ? $txt['female'] : ($profile['gender'] == 1 ? $txt['male'] : '');
+]]></search>
+			<add><![CDATA[
+	switch($profile['gender']) {
+            case 5:
+                $gendertxt = $txt['intersexed'];
+                $genderimg = 'intersexed.gif';
+                break;
+            case 4:
+                $gendertxt = $txt['transf2m'];
+                $genderimg = 'transexual.gif';
+                break;
+            case 3:
+                $gendertxt = $txt['transm2f'];
+                $genderimg = 'transexual.gif';
+                break;
+            case 2:
+                $gendertxt = $txt['female'];
+                $genderimg = 'Female.gif';
+                break;
+            case 1:
+                $gendertxt = $txt['male'];
+                $genderimg = 'Male.gif';
+                break;
+            default:
+                $gendertxt = '';
+                break;
+        }
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+			'image' => !empty($profile['gender']) ? '<img src="' . $settings['images_url'] . '/' . ($profile['gender'] == 1 ? 'Male' : 'Female') . '.gif" alt="' . $gendertxt . '" border="0" />' : ''
+]]></search>
+			<add><![CDATA[
+			'image' => !empty($profile['gender']) ? '<img src="' . $settings['images_url'] . '/' . $genderimg . '" alt="' . $gendertxt . '" border="0" />' : ''
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageMembers.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				'values' => array('0', '1', '2'),
+]]></search>
+			<add><![CDATA[
+				'values' => array('0', '1', '2', '3', '4', '5'),
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Profile-Modify.php">
+		<operation>
+			<search position="replace"><![CDATA[
+			'options' => 'return array(0 => \'\', 1 => $txt[\'male\'], 2 => $txt[\'female\']);',
+]]></search>
+			<add><![CDATA[
+			'options' => 'return array(
+                            0 => \'\',
+                            1 => $txt[\'male\'],
+                            2 => $txt[\'female\'],
+                            3 => $txt[\'transm2f\'],
+                            4 => $txt[\'transf2m\'],
+                            5 => $txt[\'intersexed\'],
+                            );',
+]]></add>
+		</operation>
+	</file>
+
+</modification>

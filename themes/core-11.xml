@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>motokochan:moregenders</id>
+
+	<file name="$themedir/ManageMembers.template.php">
+		<operation>
+			<search position="before"><![CDATA[
+								<label for="gender-2"><input type="checkbox" name="gender[]" value="2" id="gender-2" checked="checked" class="check" /> ', $txt[239], '</label>
+]]></search>
+			<add><![CDATA[
+								<label for="gender-3"><input type="checkbox" name="gender[]" value="3" id="gender-3" checked="checked" class="check" /> ', $txt['transm2f'], '</label>
+								<label for="gender-4"><input type="checkbox" name="gender[]" value="4" id="gender-4" checked="checked" class="check" /> ', $txt['transf2m'], '</label>
+								<label for="gender-5"><input type="checkbox" name="gender[]" value="5" id="gender-5" checked="checked" class="check" /> ', $txt['intersexed'], '</label>
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$themedir/Profile.template.php">
+		<operation>
+			<search position="before"><![CDATA[
+										<option value="2"', ($context['member']['gender']['name'] == 'f' ? ' selected="selected"' : ''), '>', $txt[239], '</option>
+]]></search>
+			<add><![CDATA[
+										<option value="3"', ($context['member']['gender']['name'] == 'm2f' ? ' selected="selected"' : ''), '>', $txt['transm2f'], '</option>
+										<option value="4"', ($context['member']['gender']['name'] == 'f2m' ? ' selected="selected"' : ''), '>', $txt['transf2m'], '</option>
+										<option value="5"', ($context['member']['gender']['name'] == 'is' ? ' selected="selected"' : ''), '>', $txt['intersexed'], '</option>
+]]></add>
+		</operation>
+	</file>
+</modification>

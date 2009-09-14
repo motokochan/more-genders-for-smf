@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>motokochan:moregenders</id>
+	<name>More Genders</name>
+
+	<file name="$sourcedir/Load.php">
+		<operation>
+			<search position="replace"><![CDATA[
+	$gendertxt = $profile['gender'] == 2 ? $txt[239] : ($profile['gender'] == 1 ? $txt[238] : '');
+]]></search>
+			<add><![CDATA[
+	switch($profile['gender']) {
+            case 5:
+                $gendertxt = $txt['intersexed'];
+                $genderimg = 'intersexed.gif';
+                break;
+            case 4:
+                $gendertxt = $txt['transf2m'];
+                $genderimg = 'transexual.gif';
+                break;
+            case 3:
+                $gendertxt = $txt['transm2f'];
+                $genderimg = 'transexual.gif';
+                break;
+            case 2:
+                $gendertxt = $txt['239'];
+                $genderimg = 'Female.gif';
+                break;
+            case 1:
+                $gendertxt = $txt['238'];
+                $genderimg = 'Male.gif';
+                break;
+            default:
+                $gendertxt = '';
+                break;
+        }
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+			'image' => !empty($profile['gender']) ? '<img src="' . $settings['images_url'] . '/' . ($profile['gender'] == 1 ? 'Male' : 'Female') . '.gif" alt="' . $gendertxt . '" border="0" />' : ''
+]]></search>
+			<add><![CDATA[
+			'image' => !empty($profile['gender']) ? '<img src="' . $settings['images_url'] . '/' . $genderimg . '" alt="' . $gendertxt . '" border="0" />' : ''
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageMembers.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				'values' => array('0', '1', '2'),
+]]></search>
+			<add><![CDATA[
+				'values' => array('0', '1', '2', '3', '4', '5'),
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Profile.php">
+		<operation>
+			<search position="after"><![CDATA[
+	$context['member'] = array(
+		'id' => $memID,
+		'username' => $user_profile[$memID]['memberName'],
+]]></search>
+			<add><![CDATA[
+	//Set the gender "name"
+	switch($user_profile[$memID]['gender'])
+	{
+	    case 5:
+		$gendername = 'is';
+		break;
+	    case 4:
+		$gendername = 'f2m';
+		break;
+	    case 3:
+		$gendername = 'm2f';
+		break;
+	    case 2:
+		$gendername = 'f';
+		break;
+	    case 1:
+		$gendername = 'm';
+		break;
+	    default:
+		$gendername = '';
+		break;
+	}
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+		'gender' => array('name' => empty($user_profile[$memID]['gender']) ? '' : ($user_profile[$memID]['gender'] == 2 ? 'f' : 'm')),
+]]></search>
+			<add><![CDATA[
+		'gender' => array('name' => $gendername),
+]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+	// Overwrite member settings with the ones you selected.
+	$context['member'] = array(
+		'is_owner' => $_REQUEST['userID'] == $ID_MEMBER,
+]]></search>
+			<add><![CDATA[
+	//Set the gender "name"
+	switch($_POST['gender'])
+	{
+	    case 5:
+		$gendername = 'is';
+		break;
+	    case 4:
+		$gendername = 'f2m';
+		break;
+	    case 3:
+		$gendername = 'm2f';
+		break;
+	    case 2:
+		$gendername = 'f';
+		break;
+	    case 1:
+		$gendername = 'm';
+		break;
+	    default:
+		$gendername = '';
+		break;
+	}
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+		'gender' => array(
+			'name' => empty($_POST['gender']) ? '' : ($_POST['gender'] == 2 ? 'f' : 'm')
+]]></search>
+			<add><![CDATA[
+		'gender' => array(
+			'name' => $gendername
+]]></add>
+		</operation>
+	</file>
+
+</modification>
