@@ -3,7 +3,7 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>motokochan:moregenders</id>
 	<name>More Genders</name>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<type>modification</type>
 	<install for="1.1.10-1.1.99">
 		<readme>README</readme>
@@ -13,10 +13,10 @@
 		<require-file name="files/transexual.gif" destination="$themedir/images" />
 		<require-file name="files/intersexed.gif" destination="$themedir/images" />
 	</install>
-	<install for="2.0 RC1, 2.0 RC1-1, 2.0 RC1.2">
+	<install for="2.0 RC2">
 		<readme>README</readme>
-		<modification>install-20rc1.xml</modification>
-		<modification>themes/core-20rc1.xml</modification>
+		<modification>install-20.xml</modification>
+		<modification>themes/curve-20.xml</modification>
 		<modification>languages/english.xml</modification>
 		<require-file name="files/transexual.gif" destination="$themedir/images" />
 		<require-file name="files/intersexed.gif" destination="$themedir/images" />
@@ -31,9 +31,9 @@
 		<remove-file name="$themedir/images/transexual.gif" />
 		<remove-file name="$themedir/images/intersexed.gif" />
 	</uninstall>
-	<uninstall for="2.0 RC1, 2.0 RC1-1, 2.0 RC1.2">
-		<modification reverse="true">install-20rc1.xml</modification>
-		<modification reverse="true">themes/core-20rc1.xml</modification>
+	<uninstall for="2.0 RC2">
+		<modification reverse="true">install-20.xml</modification>
+		<modification reverse="true">themes/curve-20.xml</modification>
 		<modification reverse="true">languages/english.xml</modification>
 		<remove-file name="$themedir/images/transexual.gif" />
 		<remove-file name="$themedir/images/intersexed.gif" />
