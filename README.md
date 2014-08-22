@@ -1,6 +1,5 @@
 More Genders
-by Motoko-chan
-
+============
 
 About
 -----
@@ -25,19 +24,24 @@ Features
 
 Known Issues
 ------------
-- The Male/Female ratio stastic will be inaccurate due to the way SMF
-  determines the genders for this stastic.
+ - The Male/Female ratio statistic will be inaccurate due to the way SMF
+   determines the genders for this statistic.
 
 
 How to Use
 ----------
-Additional genders to select will be avilable in the profile area.
+Additional genders to select will be available in the profile area.
 
 
 License
 -------
-This code is licensed under the terms of the Simple Machines License. All
-original code is copyright Michael Johnson.
+This code is licensed under the terms of the Modified BSD License. SMF code
+used in this mod is copyright Simple Machines. All original code is copyright
+Michael Johnson.
+
+Acknowledgements
+----------------
+"SMF" and "Simple Machines" are trademarks of Simple Machines.
 
 
 Version History
@@ -45,4 +49,4 @@ Version History
 See CHANGELOG
 
 
-Doc Revision 20090913
+Doc Revision 20140821
